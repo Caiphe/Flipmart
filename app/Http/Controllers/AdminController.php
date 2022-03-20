@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Features;
-use Illuminate\Routing\Pipeline;
-use Illuminate\Routing\Controller;
-use App\Http\Responses\LoginResponse;
 use Illuminate\Contracts\Auth\StatefulGuard;
-use Laravel\Fortify\Contracts\LogoutResponse;
-use Laravel\Fortify\Http\Requests\LoginRequest;
-use Laravel\Fortify\Contracts\LoginViewResponse;
-use Laravel\Fortify\Actions\AttemptToAuthenticate;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Routing\Pipeline;
+use App\Actions\Fortify\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
+use App\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginViewResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Features;
+use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class AdminController extends Controller
 {
@@ -35,12 +35,11 @@ class AdminController extends Controller
     public function __construct(StatefulGuard $guard)
     {
         $this->guard = $guard;
+
     }
 
-    // This is is the admin login form pag
-    public function loginForm()
-    {
-        return view('auth.login', ['guard' => 'admin']);
+    public function loginForm(){
+    	return view('auth.login', ['guard' => 'admin']);
     }
 
     /**
@@ -53,7 +52,6 @@ class AdminController extends Controller
     {
         return app(LoginViewResponse::class);
     }
-
 
     /**
      * Attempt to authenticate a new session.
@@ -112,6 +110,5 @@ class AdminController extends Controller
 
         return app(LogoutResponse::class);
     }
-
-
 }
+
