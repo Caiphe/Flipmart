@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 Route::get('/admin-logout', [AdminController::class, 'destroy'])->name('admin.logout');
 Route::get('/admin-profile', [AdminProfileController::class, 'profile'])->name('admin.profile');
 Route::get('/admin-profile-edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+Route::post('/admin-profile-update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
 
 // Normal users
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

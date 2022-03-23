@@ -22,4 +22,22 @@ class AdminProfileController extends Controller
             ['adminData' => $data]
         );
     }
+
+    public function update(Request $request){
+        $data = Admin::find(3);
+        $data->name = $request->name;
+        $data->email = $request->email;
+
+        if($request->file('profile_photo_path')){
+            $file = $request->file('profile_photo_path');
+            @unlink(public_path('upload/admin_images/'.$data->profile_photo_path));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'), $filename);
+            $data['profile_photo_path'] = $filename;
+        }
+
+        $data->save();
+        return redirect()->route('admin.profile');
+
+    }
 }
