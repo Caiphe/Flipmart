@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminProfileController extends Controller
 {
@@ -17,14 +19,14 @@ class AdminProfileController extends Controller
     }
 
     public function edit(){
-        $data = Admin::find(3);
+        $data = Admin::first();
         return view('admin.profile.edit',
             ['adminData' => $data]
         );
     }
 
     public function update(Request $request){
-        $data = Admin::find(3);
+        $data = Admin::first();
         $data->name = $request->name;
         $data->email = $request->email;
 
@@ -37,7 +39,36 @@ class AdminProfileController extends Controller
         }
 
         $data->save();
-        return redirect()->route('admin.profile');
+        $notification = array(
+            'message' => "Admin profile updated successfully!",
+            'alert-type' => 'success'
+        );
 
+        return redirect()->route('admin.profile')->with($notification);
+
+    }
+
+    public function changePassword(){
+        return view('admin.profile.change-password');
+    }
+
+    public function passwordUpdate(Request $request){
+        $validated = $request->validate([
+            'old_password' => 'required',
+            'current_password' => 'required|confirmed',
+        ]);
+
+        dd($validated);
+
+        // $hashedPassword = Admin::first()->password;
+        // if(Hash::check($request->old_password, $hashedPassword)){
+        //     $admin = Admin::first();
+        //     $admin->password = Hash::make($request->password);
+        //     $admin->save();
+        //     Auth::logout();
+        //     return redirect()->route('admin.logout');
+        // }else{
+        //     return redirect()->back();
+        // }
     }
 }
