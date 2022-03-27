@@ -33,9 +33,11 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <style>
-        .error-text{
+        .error-text, .text-error{
             color: red;
         }
+
+
     </style>
 </head>
 
