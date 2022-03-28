@@ -41,3 +41,4 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
 Route::get('/user-profile', [IndexController::class, 'userProfile'])->name('user.profile');
+Route::post('/user-profile-update', [IndexController::class, 'update'])->name('user.profile.update');

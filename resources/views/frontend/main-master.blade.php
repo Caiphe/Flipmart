@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/rateit.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/taostr.css') }}">
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.css') }}">
@@ -61,6 +62,31 @@
     <script type="text/javascript" src="{{ asset('frontend/assets/js/bootstrap-select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('backend/js/toastr.js') }}"></script>
+
+    <script type="text/javascript">
+        @if(Session::has('message'))
+        var type ="{{ Session::get('alert-type','info') }}"
+        switch(type){
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+
+        }
+        @endif
+    </script>
 </body>
 
 </html>
