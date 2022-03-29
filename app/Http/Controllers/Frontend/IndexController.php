@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
@@ -44,5 +45,31 @@ class IndexController extends Controller
         );
 
         return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function passwordChange(){
+        return view('profile.password-change');
+    }
+
+    public function passwordUpdate(Request $request){        
+        $validated = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+        if(Hash::check( $validated['old_password'], $hashedPassword)){
+            $user = User::find($request->user_id);
+            $user->password = Hash::make($validated['password']);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('admin.logout');
+        }else{
+            $notification = array(
+                'message' => "Something went wrong",
+                'alert-type' => 'danger'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 }

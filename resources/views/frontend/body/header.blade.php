@@ -13,7 +13,7 @@
               @guest
                 <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login / Register</a></li>
               @else
-                <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>Profile</a></li>
+                <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>Profile</a></li>
               @endguest
             </ul>
           </div>

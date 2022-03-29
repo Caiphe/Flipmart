@@ -15,6 +15,7 @@
         <div class="container">
             <div class="sign-in-page">
                 <div class="row">
+                    <div class="col-md-3"></div>
                     <!-- Sign-in -->
                     <div class="col-md-6 col-sm-6 sign-in">
                         <h4 class="">Sign in</h4>
@@ -48,12 +49,15 @@
 
                             </div>
                             <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                            <a class="btn btn-secondary" href={{ route('register') }}>Register</a>
                         </form>
                     </div>
                     <!-- Sign-in -->
 
+                    <div class="col-md-3"></div>
+
                     <!-- create a new account -->
-                    <div class="col-md-6 col-sm-6 create-new-account">
+                    {{-- <div class="col-md-6 col-sm-6 create-new-account">
                         <h4 class="checkout-subtitle">Create a new account</h4>
 
                         <form class="register-form outer-top-xs" method="POST" action="{{ route('register') }}">
@@ -102,7 +106,7 @@
                             <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
                         </form>
 
-                    </div>
+                    </div> --}}
                 </div><!-- /.row -->
             </div><!-- /.sigin-in-->
             <!-- ============================================== BRANDS CAROUSEL ============================================== -->

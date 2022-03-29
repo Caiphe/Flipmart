@@ -36,7 +36,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="mb-2" style="margin-bottom: 10px;"><a href="/" class="btn btn-primary btn-sm btn-block">Home</a></li>
                             <li class="mb-2" style="margin-bottom: 10px;"><a href="{{ route('user.profile') }}" class="btn btn-primary btn-sm btn-block">Profile</a></li>
-                            <li class="mb-2" style="margin-bottom: 10px;"><a class="btn btn-primary btn-sm btn-block">Change Password</a></li>
+                            <li class="mb-2" style="margin-bottom: 10px;"><a href={{ route("user.change.password") }} class="btn btn-primary btn-sm btn-block">Change Password</a></li>
                             <li class="mb-2" style="margin-bottom: 10px;"><a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a></li>
                         </ul>
                     </div>

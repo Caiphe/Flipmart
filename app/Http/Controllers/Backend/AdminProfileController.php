@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminProfileController extends Controller
 {
     public function profile(){
-        $data = Admin::find(3);
+        $data = Admin::first();
         // dd($data);
         return view('admin.profile.profile',
             ['adminData' => $data]
