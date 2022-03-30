@@ -35,16 +35,17 @@
 
 
 	<!-- Vendor JS -->
-	<script src="{{ asset('backend/js/vendors.min.js') }}"></script>
-	<script src="{{ asset('backend/js/jquery.js') }}"></script>
-    <script src="{{ asset('../assets/icons/feather-icons/feather.min.js') }}"></script>
-    <script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
-    <script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/vendors.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/jquery.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/sweet.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('../assets/icons/feather-icons/feather.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/js/pages/data-table.js') }}"></script>
 
 	<!-- Sunny Admin App -->
-	<script src="{{ asset('backend/js/template.js') }}"></script>
-	<script src="{{ asset('backend/js/toastr.js') }}"></script>
-	<script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/template.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/toastr.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
 
     <script type="text/javascript">
         @if(Session::has('message'))
@@ -68,6 +69,29 @@
 
         }
         @endif
+
+        $(document).on('click', '.delete-data', function(e){
+        e.preventDefault();
+        var link = $(this).attr('href');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this data",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link;
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        });
+    });
     </script>
 </body>
 </html>

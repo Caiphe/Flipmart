@@ -10,13 +10,13 @@ class Brand extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'brand_name',
+        'name',
         'brand_slug',
         'brand_image'
     ];
 
-    public function setBrand_NameAttribute($brand_name){
-        $this->attributes['brand_name'] = $brand_name;
-        $this->attributes['brand_slug'] = Str::slug($brand_name);
+    public function setNameAttribute($name){
+        $this->attributes['name'] = $name;
+        $this->attributes['brand_slug'] = Str::slug($name);
     }
 }

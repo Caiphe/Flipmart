@@ -24,17 +24,17 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'brand_name' => 'required',
+            'name' => 'required',
             'brand_slug' => 'nullable',
-            'brand_image' => 'required'
+            'brand_image' => 'nullable'
         ];
     }
 
     public function prepareForValidation(){
         $this->merge([
-            'brand_name' => htmlspecialchars($this->brand_name),
+            'name' => htmlspecialchars($this->name),
             'brand_slug' => htmlspecialchars($this->brand_slug),
-            'brand_image' => htmlspecialchars($this->brand)
+            'brand_image' => htmlspecialchars($this->brand_image)
         ]);
     }
 }

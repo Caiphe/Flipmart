@@ -38,6 +38,9 @@ Route::post('/admin-password-update', [AdminProfileController::class, 'passwordU
 Route::prefix('brand')->group(function(){
     Route::get('/view', [BrandController::class, 'index'])->name('all.brand');
     Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/delete/{brand:id}', [BrandController::class, 'destroy'])->name('brand.delete');
+    Route::get('/edit/{brand:brand_slug}', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/update/{brand}', [BrandController::class, 'update'])->name('brand.update');
 });
 
 // Non Admin Routes
