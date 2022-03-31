@@ -44,7 +44,7 @@
 
                             {{-- <div class="brand-logo brand-image" style="background-image:url(''); background-size: cover;"></div> --}}
 
-                            <button type="submit" class="btn btn-primary">Add New</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
 
                     </div>

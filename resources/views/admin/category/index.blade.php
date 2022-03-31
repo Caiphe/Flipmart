@@ -20,7 +20,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title">Brand List</h4>
+                            <h4 class="box-title">Category List</h4>
                         </div>
                         <div class="box-body">
                             <div class="table-responsive">
@@ -28,25 +28,26 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Brand Name</th>
-                                            <th>Brand Slug</th>
-                                            <th>Brand Image</th>
+                                            <th>Name</th>
+                                            <th>Slug</th>
+                                            <th>Icon</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($brands as $brand)
+                                        @foreach ($categories as $category)
                                             <tr>
-                                                <td>{{ $brand->name }}</td>
-                                                <td>{{ $brand->brand_slug }}</td>
-                                                <td><div class="brand-image" style="background-image: url('{{ asset($brand->brand_image) }}');"></div></td>
+                                                <th>{{ $category->name }}</th>
+                                                <th>{{ $category->slug }}</th>
+                                                <td style="text-align: center;"><i class="fa fa-{{ $category->icon }}"></i></td>
                                                 <td style="display: flex;">
-                                                    <a class="btn btn-info mr-2" href="{{ route('brand.edit', $brand->brand_slug ) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger delete-data" id="delete" href="{{ route('brand.delete', $brand->id) }}" title="Delete Data"><i class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-info mr-2" href="{{ route('category.edit', $category->slug) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger delete-data" id="delete" href="{{ route('category.delete', $category->id) }}" title="Delete Data"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
+
                                     </tbody>
 
                                 </table>
@@ -58,15 +59,15 @@
                 <div class="col-4">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title">Add New Brand</h4>
+                            <h4 class="box-title">Add New Category</h4>
                         </div>
                         <div class="box-body">
 
-                            <form method="POST" action="{{ route('brand.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
-                                    <h5>Brand Name <span class="text-danger">*</span></h5>
+                                    <h5>Category Name <span class="text-danger">*</span></h5>
                                     <input type="text" name="name" id="name" class="form-control" />
                                     @error('name')
                                         <p class="text-danger">{{ $message }}</p>
@@ -74,9 +75,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <h5>Brand Image <span class="text-danger">*</span></h5>
-                                    <input type="file" name="brand_image" class="form-control" id="brand_image" required />
-                                    @error('brand_image')
+                                    <h5>Category Icon <span class="text-danger">*</span></h5>
+                                    <input type="text" name="icon" class="form-control" id="icon"/>
+                                    @error('icon')
                                     <p class="text-danger">{{ $message }}</p>
 
                                     @enderror

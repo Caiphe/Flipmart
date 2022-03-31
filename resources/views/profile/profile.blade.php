@@ -15,7 +15,7 @@
                 <div class="row" style="margin-bottom: 60px;">
 
                     <div class="col-md-3 col-sm-6 create-new-account">
-                        <img style="max-width: 100px;height: 100px; border-radius: 50%; display: flex;margin: 0px auto;"
+                        <img style="max-width: 100px;border-radius: 50%; display: flex;margin: 0px auto;"
                             class="card-img-top"
                             src="{{ !empty(auth()->user()->profile_photo_path)? url('upload/user_images/' . auth()->user()->profile_photo_path): url('upload/no-photo.jpeg') }}"
                             alt="">

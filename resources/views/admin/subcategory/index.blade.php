@@ -20,7 +20,7 @@
                 <div class="col-8">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title">Brand List</h4>
+                            <h4 class="box-title">Sub-Category List</h4>
                         </div>
                         <div class="box-body">
                             <div class="table-responsive">
@@ -28,25 +28,26 @@
                                     style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Brand Name</th>
-                                            <th>Brand Slug</th>
-                                            <th>Brand Image</th>
+                                            <th>Category</th>
+                                            <th>Sub-category</th>
+                                            <th>Slug</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($brands as $brand)
+                                        @foreach ($subcategories as $item)
                                             <tr>
-                                                <td>{{ $brand->name }}</td>
-                                                <td>{{ $brand->brand_slug }}</td>
-                                                <td><div class="brand-image" style="background-image: url('{{ asset($brand->brand_image) }}');"></div></td>
+                                                <th>{!! $item->category->name !!}</th>
+                                                <th>{!! $item->name !!}</th>
+                                                <th>{{ $item->slug }}</th>
                                                 <td style="display: flex;">
-                                                    <a class="btn btn-info mr-2" href="{{ route('brand.edit', $brand->brand_slug ) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-danger delete-data" id="delete" href="{{ route('brand.delete', $brand->id) }}" title="Delete Data"><i class="fa fa-trash-o"></i></a>
+                                                    <a class="btn btn-info mr-2" href="{{ route('subcategory.edit', $item->slug) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger delete-data" id="delete" href="{{ route('subcategory.delete', $item->id) }}" title="Delete Data"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
+
                                     </tbody>
 
                                 </table>
@@ -58,27 +59,33 @@
                 <div class="col-4">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title">Add New Brand</h4>
+                            <h4 class="box-title">Add New Sub-Category</h4>
                         </div>
                         <div class="box-body">
 
-                            <form method="POST" action="{{ route('brand.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('subcategory.store') }}">
                                 @csrf
 
                                 <div class="form-group">
-                                    <h5>Brand Name <span class="text-danger">*</span></h5>
-                                    <input type="text" name="name" id="name" class="form-control" />
-                                    @error('name')
+                                    <h5>Category<span class="text-danger">*</span></h5>
+                                    <select name="category_id" class="form-control">
+                                        <option value="">Select Category</option>
+                                        @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{!! $category->name !!}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('category_id')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
 
-                                <div class="form-group">
-                                    <h5>Brand Image <span class="text-danger">*</span></h5>
-                                    <input type="file" name="brand_image" class="form-control" id="brand_image" required />
-                                    @error('brand_image')
-                                    <p class="text-danger">{{ $message }}</p>
 
+                                <div class="form-group">
+                                    <h5>Sub-Category Name <span class="text-danger">*</span></h5>
+                                    <input type="text" name="name" id="name" class="form-control" />
+                                    @error('name')
+                                        <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
 

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 
 /*
@@ -41,6 +43,24 @@ Route::prefix('brand')->group(function(){
     Route::get('/delete/{brand:id}', [BrandController::class, 'destroy'])->name('brand.delete');
     Route::get('/edit/{brand:brand_slug}', [BrandController::class, 'edit'])->name('brand.edit');
     Route::post('/update/{brand}', [BrandController::class, 'update'])->name('brand.update');
+});
+
+// Admin Category Route
+Route::prefix('category')->group(function(){
+    Route::get('/view', [CategoryController::class, 'index'])->name('all.category');
+    Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/delete/{category:id}', [CategoryController::class, 'destroy'])->name('category.delete');
+    Route::get('/edit/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/update/{category:id}', [CategoryController::class, 'update'])->name('category.update');
+});
+
+// Addmin Sub Category Routes
+Route::prefix('subcategory')->group(function(){
+    Route::get('/view', [SubCategoryController::class, 'index'])->name('all.subcategory');
+    Route::post('/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
+    Route::get('/delete/{subcategory}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
+    Route::get('/edit/{subcategory:slug}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+    Route::post('/update/{subcategory}', [SubCategoryController::class, 'update'])->name('subcategory.update');
 });
 
 // Non Admin Routes
