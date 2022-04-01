@@ -82,4 +82,10 @@ class SubCategoryController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
+    // This is to make the dependency dropdown list
+    public function getSubcategory($category_id){
+        $subcat = Subcategory::where('category_id', $category_id)->orderBy('name', 'ASC')->get();
+        return json_encode($subcat);
+    }
 }

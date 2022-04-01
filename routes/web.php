@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\SubSubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,18 @@ Route::prefix('subcategory')->group(function(){
     Route::get('/delete/{subcategory}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
     Route::get('/edit/{subcategory:slug}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
     Route::post('/update/{subcategory}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+});
+
+// This route is getting the list of subcategory needed to create dependencies dropdown
+Route::get('category/subcategory/ajax/{category:id}', [SubCategoryController::class, 'getSubcategory']);
+
+// Addmin Sub Sub Category Routes
+Route::prefix('subsubcategory')->group(function(){
+    Route::get('/view', [SubSubCategoryController::class, 'index'])->name('all.subsubcategory');
+    Route::post('/store', [SubSubCategoryController::class, 'store'])->name('subsubcategory.store');
+    Route::get('/delete/{subsubcategory:id}', [SubSubCategoryController::class, 'destroy'])->name('subsubcategory.delete');
+    Route::get('/edit/{subsubcategory:slug}', [SubSubCategoryController::class, 'edit'])->name('subsubcategory.edit');
+    Route::post('/update/{subsubcategory}', [SubSubCategoryController::class, 'update'])->name('subsubcategory.update');
 });
 
 // Non Admin Routes

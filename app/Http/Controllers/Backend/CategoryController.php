@@ -43,13 +43,11 @@ class CategoryController extends Controller
     }
 
     public function destroy(Category $category){
-        $category_icon = $category->icon;
-        unlink($category_icon);
         $category->delete();
 
         $notification = array(
             'message' => "Brand deleted successfully",
-            'alert-type' => 'success'
+            'alert-type' => 'warning'
         );
         return redirect()->back()->with($notification);
     }
@@ -67,7 +65,7 @@ class CategoryController extends Controller
 
         $notification = array(
             'message' => "Category updated successfully",
-            'alert-type' => 'success'
+            'alert-type' => 'info'
         );
         return redirect()->route('all.category')->with($notification);
 

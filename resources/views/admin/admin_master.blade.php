@@ -35,8 +35,8 @@
 
 
 	<!-- Vendor JS -->
+    <script type="text/javascript" src="{{ asset('backend/js/jquery.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('backend/js/vendors.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('backend/js/jquery.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('backend/js/sweet.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/icons/feather-icons/feather.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>

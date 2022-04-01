@@ -38,9 +38,9 @@
                                     <tbody>
                                         @foreach ($categories as $category)
                                             <tr>
-                                                <th>{{ $category->name }}</th>
+                                                <th>{!! $category->name !!}</th>
                                                 <th>{{ $category->slug }}</th>
-                                                <td style="text-align: center;"><i class="fa fa-{{ $category->icon }}"></i></td>
+                                                <td style="text-align: center;"><i class="fa fa-{{ strtolower($category->icon) }}"></i></td>
                                                 <td style="display: flex;">
                                                     <a class="btn btn-info mr-2" href="{{ route('category.edit', $category->slug) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger delete-data" id="delete" href="{{ route('category.delete', $category->id) }}" title="Delete Data"><i class="fa fa-trash-o"></i></a>
