@@ -20,7 +20,7 @@
                 <div class="col-12">
                     <div class="box">
                         <div class="box-header">
-                            <h4 class="box-title">Add New Sub-Category</h4>
+                            <h4 class="box-title">Update Sub sub-category</h4>
                         </div>
                         <div class="box-body">
 
@@ -64,7 +64,7 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Add New</button>
+                                <button type="submit" class="btn btn-info">Update</button>
                             </form>
 
                         </div>

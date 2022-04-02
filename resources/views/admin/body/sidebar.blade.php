@@ -31,45 +31,51 @@
 
             <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="grid"></i>
                     <span>Brand</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ $route == 'all.brand' ? 'active' : '' }}"><a href="{{ route('all.brand') }}"><i
-                                class="ti-more"></i>All Brand</a></li>
+                    <li class="{{ $route == 'all.brand' ? 'active' : '' }}"><a href="{{ route('all.brand') }}"><i class="ti-more"></i>All Brand</a></li>
                 </ul>
             </li>
 
             <li class="treeview {{ $prefix == '/category' ? 'active' : '' }}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="inbox"></i>
                     <span>Category</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
 
                 <ul class="treeview-menu">
-                    <li class="{{ $route == 'all.category' ? 'active' : '' }}"><a
-                            href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a></li>
-                    <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}"><a
-                            href="{{ route('all.subcategory') }}"><i class="ti-more"></i>All Sub-Category</a>
+                    <li class="{{ $route == 'all.category' ? 'active' : '' }}">
+                        <a href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a>
                     </li>
-                    <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}"><a
-                            href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>All Sub
-                            Sub-Category</a></li>
+                    <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}">
+                        <a href="{{ route('all.subcategory') }}"><i class="ti-more"></i>All Sub-Category</a>
+                    </li>
+                    <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}">
+                        <a href="{{ route('all.subsubcategory') }}"><i class="ti-more"></i>All Sub Sub-Category</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}">
+                <a href="#">
+                    <i data-feather="package"></i>
+                    <span>Products</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class=""><a href="profile.html"><i class="ti-more"></i>Manage Products</a></li>
+                    <li class="{{ $route == 'add.product' ? 'active' : '' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>Add Products</a></li>
                 </ul>
             </li>
 
             <li class="treeview">
                 <a href="#">
                     <i data-feather="mail"></i> <span>Mailbox</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
@@ -82,9 +88,7 @@
                 <a href="#">
                     <i data-feather="file"></i>
                     <span>Pages</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
@@ -101,9 +105,7 @@
                 <a href="#">
                     <i data-feather="grid"></i>
                     <span>Components</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
@@ -116,9 +118,7 @@
                 <a href="#">
                     <i data-feather="credit-card"></i>
                     <span>Cards</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="card_advanced.html"><i class="ti-more"></i>Advanced Cards</a></li>

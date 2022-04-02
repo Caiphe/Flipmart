@@ -40,6 +40,7 @@
 	<script type="text/javascript" src="{{ asset('backend/js/sweet.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/icons/feather-icons/feather.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/pages/data-table.js') }}"></script>
 
 	<!-- Sunny Admin App -->
