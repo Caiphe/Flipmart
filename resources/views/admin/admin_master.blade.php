@@ -38,10 +38,14 @@
     <script type="text/javascript" src="{{ asset('backend/js/jquery.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('backend/js/vendors.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('backend/js/sweet.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('backend/js/pages/editor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/icons/feather-icons/feather.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/pages/data-table.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
 
 	<!-- Sunny Admin App -->
 	<script type="text/javascript" src="{{ asset('backend/js/template.js') }}"></script>

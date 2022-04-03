@@ -37,8 +37,6 @@
         .error-text, .text-error{
             color: red;
         }
-
-
     </style>
 </head>
 

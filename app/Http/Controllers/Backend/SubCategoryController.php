@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Subsubcategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubCategoryRequest;
 
@@ -19,7 +20,7 @@ class SubCategoryController extends Controller
         return view('admin.subcategory.index',
         [
             'subcategories' => Subcategory::latest()->get(),
-            'categories' => Category::all(),
+            'categories' => Category::orderBy('name')->get(),
         ]);
     }
 
@@ -83,9 +84,15 @@ class SubCategoryController extends Controller
 
     }
 
-    // This is to make the dependency dropdown list
-    public function getSubcategory($category_id){
+    // This is to make the dependency dropdown list from category to sub category
+    public function getsubcategory($category_id){
         $subcat = Subcategory::where('category_id', $category_id)->orderBy('name', 'ASC')->get();
         return json_encode($subcat);
+    }
+
+    // this is to make the dependency dropdown list from subcategory to subsubcategory
+    public function getsubsubcategory($subcategory_id){
+        $subsubcat = Subsubcategory::where('sub_category_id', $subcategory_id)->orderBy('name', 'ASC')->get();
+        return json_encode($subsubcat);
     }
 }

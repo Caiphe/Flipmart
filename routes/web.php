@@ -66,7 +66,8 @@ Route::prefix('subcategory')->group(function(){
 });
 
 // This route is getting the list of subcategory needed to create dependencies dropdown
-Route::get('category/subcategory/ajax/{category:id}', [SubCategoryController::class, 'getSubcategory']);
+Route::get('/category/subcategory/ajax/{category_id}', [SubCategoryController::class, 'getsubcategory']);
+Route::get('/category/subsubcategory/ajax/{subcategory_id}', [SubCategoryController::class, 'getsubsubcategory']);
 
 // Addmin Sub Sub Category Routes
 Route::prefix('subsubcategory')->group(function(){
@@ -79,7 +80,7 @@ Route::prefix('subsubcategory')->group(function(){
 
 Route::prefix('product')->group(function(){
     Route::get('/add', [ProductController::class, 'index'])->name('add.product');
-    // Route::post('/store', [SubSubCategoryController::class, 'store'])->name('subsubcategory.store');
+    Route::post('/store', [ProductController::class, 'store'])->name('product.store');
     // Route::get('/delete/{subsubcategory:id}', [SubSubCategoryController::class, 'destroy'])->name('subsubcategory.delete');
     // Route::get('/edit/{subsubcategory:slug}', [SubSubCategoryController::class, 'edit'])->name('subsubcategory.edit');
     // Route::post('/update/{subsubcategory}', [SubSubCategoryController::class, 'update'])->name('subsubcategory.update');
