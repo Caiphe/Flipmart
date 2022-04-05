@@ -24,8 +24,8 @@ class MultipleImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required',
-            'photo_name' => 'required',
+            'product_id' => ['required'],
+            'photo_name' => ['required'],
         ];
     }
 

@@ -10,15 +10,17 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Subsubcategory;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MultipleImageRequest;
 use App\Http\Requests\ProductRequest;
+use App\Models\MultiImage;
 use Image;
 
 class ProductController extends Controller
 {
 
-    // public function __construct(){
-    //     $this->middleware(['auth:sanctum,admin', 'verified']);
-    // }
+    public function __construct(){
+        $this->middleware(['auth:sanctum,admin', 'verified']);
+    }
 
     // Display the product form to create a product
     public function index(){
@@ -35,13 +37,26 @@ class ProductController extends Controller
         $data = $request->validated();
 
         $file = $data['thumbanail'];
-        $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-        Image::make($file)->resize(400,400)->save('upload/products/thumbnail/'.$name_gen);
-        $save_url = 'upload/products/thumbnail/'.$name_gen;
-        $data['thumbanail'] = $save_url;
+        $nameGenerated = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        Image::make($file)->resize(400,400)->save('upload/products/thumbnail/'.$nameGenerated);
+        $Imageurl = 'upload/products/thumbnail/'.$nameGenerated;
+        $data['thumbanail'] = $Imageurl;
         $data['slug'] = Str::slug($data['name']);
 
-        Product::create($data);
+        $newProduct = Product::create($data);
+
+        //Store Product Multiple Image
+        $images = $request->file('multi_images');
+        foreach ($images as $img){
+            $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($file)->resize(400,400)->save('upload/products/multi-image/'.$imgName);
+            $uploadPath = 'upload/products/multi-image/'.$imgName;
+
+            MultiImage::create([
+                'product_id' => $newProduct->id,
+                'photo_name' => $uploadPath
+            ]);
+        }
 
         $notification = array(
             'message' => "New Product added successfully",

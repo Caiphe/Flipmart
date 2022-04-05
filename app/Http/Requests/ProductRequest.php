@@ -39,7 +39,7 @@ class ProductRequest extends FormRequest
           'discount_price' => ['nullable'],
           'short_description' => ['nullable'],
           'description' => ['nullable'],
-          'thumbanail' => ['nullable'],
+          'thumbanail' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'dimensions:min_width=100,min_height=100,max_width=2000, max_height=2000', 'max:2048'],
           'hot_deal' => ['nullable'],
           'featured' => ['nullable'],
           'special_deal' => ['nullable'],
@@ -71,5 +71,12 @@ class ProductRequest extends FormRequest
             'special_deal' => htmlspecialchars($this->special_deal, ENT_NOQUOTES),
             'status' => htmlspecialchars($this->status, ENT_NOQUOTES),
         ]);
+    }
+
+    public function messages()
+    {
+        return [
+            'dimensions' => 'Image width and height should be less than 2000px'
+        ];
     }
 }
