@@ -30,6 +30,7 @@ class ProductController extends Controller
             'categories' => Category::orderBy('name', 'ASC')->get(),
             'subcategories' => Subcategory::orderBy('name', 'ASC')->get(),
             'subsubcategory' => Subsubcategory::orderBy('name', 'ASC')->get(),
+            'products' => Product::orderBy('created_at','DESC')->get()
         ]);
     }
 
@@ -46,16 +47,18 @@ class ProductController extends Controller
         $newProduct = Product::create($data);
 
         //Store Product Multiple Image
-        $images = $request->file('multi_images');
-        foreach ($images as $img){
-            $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($file)->resize(400,400)->save('upload/products/multi-image/'.$imgName);
-            $uploadPath = 'upload/products/multi-image/'.$imgName;
+        if($request->file('multi_images')){
+            $images = $request->file('multi_images');
+            foreach ($images as $img){
+                $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+                Image::make($file)->resize(400,400)->save('upload/products/multi-image/'.$imgName);
+                $uploadPath = 'upload/products/multi-image/'.$imgName;
 
-            MultiImage::create([
-                'product_id' => $newProduct->id,
-                'photo_name' => $uploadPath
-            ]);
+                MultiImage::create([
+                    'product_id' => $newProduct->id,
+                    'photo_name' => $uploadPath
+                ]);
+            }
         }
 
         $notification = array(
@@ -73,7 +76,8 @@ class ProductController extends Controller
 
     }
 
-    public function destroy(){
+    public function destroy(Product $product){
+
 
     }
 }

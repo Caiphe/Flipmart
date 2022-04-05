@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
@@ -26,9 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function(){
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('admin.dashboard');
+// Main Dashboard
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware(['auth:sanctum,admin', 'verified'])->name('admin.dashboard');
 
 // Admin Routes
 Route::get('/admin-logout', [AdminController::class, 'destroy'])->name('admin.logout');
