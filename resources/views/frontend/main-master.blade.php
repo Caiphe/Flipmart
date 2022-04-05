@@ -26,6 +26,7 @@
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('font/font.css') }}"> --}}
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>

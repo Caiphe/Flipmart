@@ -203,7 +203,7 @@
 											<label for="hot_deal">Hot Deal</label>
 										</fieldset>
 										<fieldset>
-											<input type="checkbox" id="featured" value="1">
+											<input type="checkbox" id="featured" name="featured" value="1">
 											<label for="featured">Featured</label>
 										</fieldset>
 
@@ -214,7 +214,7 @@
 											<label for="special_deal">Special Deals</label>
 										</fieldset>
 										<fieldset>
-											<input type="checkbox" id="status" value="1">
+											<input type="checkbox" id="status" name="status" value="1">
 											<label for="status">Status</label>
 										</fieldset>
                                     </div>

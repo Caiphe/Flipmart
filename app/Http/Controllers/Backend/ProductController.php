@@ -15,6 +15,11 @@ use Image;
 
 class ProductController extends Controller
 {
+
+    // public function __construct(){
+    //     $this->middleware(['auth:sanctum,admin', 'verified']);
+    // }
+
     // Display the product form to create a product
     public function index(){
         return view('admin.product.index',
@@ -27,30 +32,22 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $request){
-        $data = $request->validate();
-        if(!Product::where('name' === $data['name'] && 'brand_id' === $data['brand_id'] && 'category_id' === $data['category_id'] )->exists()){
+        $data = $request->validated();
 
-            $file = $data['thumbanail'];
-            $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            Image::make($file)->resize(400,400)->save('upload/products/'.$name_gen);
-            $save_url = 'upload/products/'.$name_gen;
-            $data['thumbanail'] = $save_url;
-            $data['slug'] = Str::slug($data['name']);
+        $file = $data['thumbanail'];
+        $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        Image::make($file)->resize(400,400)->save('upload/products/thumbnail/'.$name_gen);
+        $save_url = 'upload/products/thumbnail/'.$name_gen;
+        $data['thumbanail'] = $save_url;
+        $data['slug'] = Str::slug($data['name']);
 
-            Product::create($data);
+        Product::create($data);
 
-            $notification = array(
-                'message' => "New Product added successfully",
-                'alert-type' => 'success'
-            );
-            return redirect()->back()->with($notification);
-        }else{
-            $notification = array(
-                'message' => "Produc exists already!",
-                'alert-type' => 'info'
-            );
-            return redirect()->back()->with($notification);
-        }
+        $notification = array(
+            'message' => "New Product added successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function edit(Product $product){
