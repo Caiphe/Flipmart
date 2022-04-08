@@ -23,8 +23,8 @@ class BrandController extends Controller
 
     public function store(BrandRequest $request){
         $data = $request->validated();
-        $file = $data['brand_image'];
 
+        $file = $data['brand_image'];
         $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
         Image::make($file)->resize(300,300)->save('upload/brands/'.$name_gen);
         $save_url = 'upload/brands/'.$name_gen;

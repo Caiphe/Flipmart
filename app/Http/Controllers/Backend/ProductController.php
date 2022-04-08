@@ -68,8 +68,21 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function edit(Product $product){
+    public function manage(){
+        return view('admin.product.manage',
+            ['products' => Product::orderBy('created_at','DESC')->get()]
+        );
+    }
 
+    public function edit(Product $product){
+        return view('admin.product.edit',
+            [
+                'brands' => Brand::orderBy('name', 'ASC')->get(),
+                'categories' => Category::orderBy('name', 'ASC')->get(),
+                'subcategories' => Subcategory::orderBy('name', 'ASC')->get(),
+                'subsubcategory' => Subsubcategory::orderBy('name', 'ASC')->get(),
+                'product' => $product
+            ]);
     }
 
     public function update(){
@@ -77,7 +90,13 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product){
+        unlink($product->brand_image);
+        $product->delete();
 
-
+        $notification = array(
+            'message' => "Product deleted successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

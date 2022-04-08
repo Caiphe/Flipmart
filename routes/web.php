@@ -81,8 +81,9 @@ Route::prefix('subsubcategory')->group(function(){
 Route::prefix('product')->group(function(){
     Route::get('/add', [ProductController::class, 'index'])->name('add.product');
     Route::post('/store', [ProductController::class, 'store'])->name('product.store');
-    // Route::get('/delete/{subsubcategory:id}', [SubSubCategoryController::class, 'destroy'])->name('subsubcategory.delete');
-    // Route::get('/edit/{subsubcategory:slug}', [SubSubCategoryController::class, 'edit'])->name('subsubcategory.edit');
+    Route::get('/manage', [ProductController::class, 'manage'])->name('manage.product');
+    Route::get('/delete/{product}', [ProductController::class, 'destroy'])->name('product.delete');
+    Route::get('/edit/{product:slug}', [ProductController::class, 'edit'])->name('product.edit');
     // Route::post('/update/{subsubcategory}', [SubSubCategoryController::class, 'update'])->name('subsubcategory.update');
 });
 

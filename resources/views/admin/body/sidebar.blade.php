@@ -68,15 +68,15 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ $route == 'add.product' ? 'active' : '' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>Add Products</a></li>
-                    <li class=""><a href="#"><i class="ti-more"></i>Manage Products</a></li>
+                    <li class="{{ $route == 'manage.product' ? 'active' : '' }}"><a href="{{ route('manage.product') }}"><i class="ti-more"></i>Manage Products</a></li>
                 </ul>
             </li>
 
             <li class="treeview">
                 <a href="#">
-                    <i data-feather="mail"></i> <span>Mailbox</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
+                    <i data-feather="mail"></i> <span>Mailbox</span> <span class="pull-right-container"><i class="fa fa-angle-right pull-right"></i></span>
                 </a>
+
                 <ul class="treeview-menu">
                     <li><a href=""><i class="ti-more"></i>Inbox</a></li>
                     <li><a href=""><i class="ti-more"></i>Compose</a></li>
