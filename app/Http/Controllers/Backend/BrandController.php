@@ -23,38 +23,20 @@ class BrandController extends Controller
 
     public function store(BrandRequest $request){
         $data = $request->validated();
+        $file = $data['brand_image'];
 
-        // $check_exist = Brand::where('name', '=', $data['name'])->first();
+        $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        Image::make($file)->resize(300,300)->save('upload/brands/'.$name_gen);
+        $save_url = 'upload/brands/'.$name_gen;
+        $data['brand_image'] = $save_url;
 
-        if(!Brand::where('name', $data['name'])->exists()){
-            $file = $data['brand_image'];
-            //  I could also use the unique ID with hexdec(uniqid())
-            // to get a unique name of the file
-            // $filename = date('YmdHi').$file->getClientOriginalName();
-            // $file->move(public_path('upload/brands'), $filename);
-            // $data['brand_image'] = $filename;
+        Brand::create($data);
 
-            $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            Image::make($file)->resize(300,300)->save('upload/brands/'.$name_gen);
-            $save_url = 'upload/brands/'.$name_gen;
-            $data['brand_image'] = $save_url;
-            $data['brand_slug'] = Str::slug($data['name']);
-
-            Brand::create($data);
-
-            $notification = array(
-                'message' => "New Brand added successfully",
-                'alert-type' => 'success'
-            );
-            return redirect()->back()->with($notification);
-        }else{
-            $notification = array(
-                'message' => "Brand exists already",
-                'alert-type' => 'warning'
-            );
-
-            return redirect()->back()->with($notification);
-        }
+        $notification = array(
+            'message' => "New Brand added successfully",
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function edit(Brand $brand){
@@ -63,7 +45,6 @@ class BrandController extends Controller
 
     public function update(BrandRequest $request,Brand $brand){
         $data = $request->validated();
-        $data['brand_slug'] = Str::slug($data['name']);
 
         if($data['brand_image']){
             $old_image = $request->old_image;

@@ -25,14 +25,13 @@ class MultipleImageRequest extends FormRequest
     {
         return [
             'product_id' => ['required'],
-            'photo_name' => ['required'],
+            'photo_name' => ['required', 'file'],
         ];
     }
 
     public function prepareForValidation(){
         $this->merge([
             'product_id' => htmlspecialchars($this->product_id),
-            'photo_name' => htmlspecialchars($this->photo_name)
         ]);
     }
 }

@@ -24,9 +24,8 @@ class SubCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required|numeric',
-            'name' => 'required|string',
-            'slug' => 'nullable'
+            'category_id' => ['required', 'numeric'],
+            'name' => ['required', 'string'],
         ];
     }
 
@@ -34,7 +33,6 @@ class SubCategoryRequest extends FormRequest
         $this->merge([
            'category_id' => htmlspecialchars($this->category_id),
            'name' => htmlspecialchars($this->name),
-           'slug' => htmlspecialchars($this->slug),
         ]);
     }
 }

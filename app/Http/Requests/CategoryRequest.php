@@ -24,16 +24,14 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'slug' => 'nullable',
-            'icon' => 'nullable',
+            'name' => ['required'],
+            'icon' => ['nullable'],
         ];
     }
 
     public function prepareForValidation(){
         $this->merge([
             'name' => htmlspecialchars($this->name),
-            'slug' => htmlspecialchars($this->slug),
             'icon' => htmlspecialchars($this->icon)
         ]);
     }

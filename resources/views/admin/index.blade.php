@@ -106,12 +106,18 @@
                                                 </div>
                                             </td>
                                             <td>
+                                                @if( $item->discount_price)
+                                                <span class="text-fade font-weight-600 d-block font-size-16">
+                                                    R {{ $item->discount_price }}
+                                                </span>
+                                                <span class="text-white font-weight-600 d-block font-size-16">
+                                                    <s>R {{ $item->price }}</s>
+                                                </span>
+                                                @else
                                                 <span class="text-fade font-weight-600 d-block font-size-16">
                                                     R {{ $item->price }}
                                                 </span>
-                                                <span class="text-white font-weight-600 d-block font-size-16">
-                                                    $45,800k
-                                                </span>
+                                                @endif
                                             </td>
                                             <td>
 
@@ -126,7 +132,11 @@
 
                                             </td>
                                             <td>
-                                                <span class="badge badge-primary-light badge-lg">Approved</span>
+                                                @if($item->status === 1)
+                                                    <span class="badge badge-primary-light badge-lg">Approved</span>
+                                                @else
+                                                    <span class="badge badge-danger-light badge-lg">Pending</span>
+                                                @endif
                                             </td>
                                             <td class="text-right">
                                                 <a href="#" class="waves-effect waves-light btn btn-info btn-circle mx-5">

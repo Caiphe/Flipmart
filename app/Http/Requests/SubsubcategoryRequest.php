@@ -24,10 +24,9 @@ class SubsubcategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required',
-            'sub_category_id' => 'required',
-            'name' => 'required|string',
-            'slug' => 'nullable'
+            'category_id' => ['required'],
+            'sub_category_id' => ['required'],
+            'name' => ['required', 'string'],
         ];
     }
 
@@ -36,7 +35,6 @@ class SubsubcategoryRequest extends FormRequest
             'category_id' => htmlentities($this->category_id),
             'sub_category_id' => htmlentities($this->sub_category_id),
             'name' => htmlentities($this->name),
-            'slug' => htmlentities($this->slug)
         ]);
     }
 }

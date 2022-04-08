@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BrandRequest extends FormRequest
@@ -24,17 +25,14 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'brand_slug' => 'nullable',
-            'brand_image' => 'nullable'
+            'name' => ['required', Rule::unique('brands')->ignore($this->name)],
+            'brand_image' => ['nullable', 'file']
         ];
     }
 
     public function prepareForValidation(){
         $this->merge([
             'name' => htmlspecialchars($this->name),
-            'brand_slug' => htmlspecialchars($this->brand_slug),
-            'brand_image' => htmlspecialchars($this->brand_image)
         ]);
     }
 }
