@@ -78,13 +78,15 @@ Route::prefix('subsubcategory')->group(function(){
     Route::post('/update/{subsubcategory}', [SubSubCategoryController::class, 'update'])->name('subsubcategory.update');
 });
 
+// Product Routes
 Route::prefix('product')->group(function(){
     Route::get('/add', [ProductController::class, 'index'])->name('add.product');
     Route::post('/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('/manage', [ProductController::class, 'manage'])->name('manage.product');
     Route::get('/delete/{product}', [ProductController::class, 'destroy'])->name('product.delete');
     Route::get('/edit/{product:slug}', [ProductController::class, 'edit'])->name('product.edit');
-    // Route::post('/update/{subsubcategory}', [SubSubCategoryController::class, 'update'])->name('subsubcategory.update');
+    Route::get('/show/{product:slug}', [ProductController::class, 'show'])->name('product.show');
+    Route::post('/update/{product}', [ProductController::class, 'update'])->name('product.update');
 });
 
 // Non Admin Routes

@@ -63,7 +63,6 @@ class ProductRequest extends FormRequest
             'discount_price' => htmlspecialchars($this->discount_price, ENT_NOQUOTES),
             'short_description' => htmlspecialchars($this->short_description, ENT_NOQUOTES),
             'description' => htmlspecialchars($this->description, ENT_NOQUOTES),
-            'thumbanail' => htmlspecialchars($this->thumbanail, ENT_NOQUOTES),
             'hot_deal' => htmlspecialchars($this->hot_deal, ENT_NOQUOTES),
             'featured' => htmlspecialchars($this->featured, ENT_NOQUOTES),
             'special_deal' => htmlspecialchars($this->special_deal, ENT_NOQUOTES),

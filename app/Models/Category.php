@@ -16,7 +16,9 @@ class Category extends Model
         'slug',
         'icon'
     ];
+    
 
+    // This is my great mutator
     public function setNameAttribute($name){
         $this->attributes['name'] = $name;
         $this->attributes['slug'] = Str::slug($name);

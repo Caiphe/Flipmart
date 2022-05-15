@@ -1,6 +1,13 @@
 @extends('admin.admin_master')
 
 @section('admin')
+<style>
+    .btn-circle {
+        width: 35px;
+        height: 35px;
+        line-height: 33px;
+    }
+</style>
 
     <div class="container-full">
         <section class="content">
@@ -20,8 +27,8 @@
                                             <th style="min-width: 250px"><span class="text-white">Products</span></th>
                                             <th style="min-width: 80px"><span class="text-fade">Price</span></th>
                                             <th style="min-width: 100px"><span class="text-fade">Quantity</span></th>
-                                            <th style="min-width: 90px"><span class="text-fade">status</span></th>
-                                            <th style="min-width: 120px">Action</th>
+                                            <th style="min-width: 70px"><span class="text-fade">status</span></th>
+                                            <th style="min-width: 120px; didplay: flex;">Action</th>
                                         </tr>
                                     </thead>
 
@@ -75,7 +82,10 @@
                                             <td class="text-right">
                                                 <a href="{{ route('product.edit', $item->slug) }}" class="waves-effect waves-light btn btn-info btn-circle mx-5">
                                                     <i class="fa fa-pencil"></i>
-                                                   </a>
+                                                </a>
+                                                <a href="{{ route('product.show', $item->slug) }}" class="waves-effect waves-light btn btn-success btn-circle mx-5">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                                 <a class="waves-effect waves-light btn btn-danger btn-circle mx-5" id="delete" href="{{ route('product.delete', $item->id) }}">
                                                     <i class="fa fa-trash"></i>
                                                 </a>

@@ -34,8 +34,9 @@
                         </div>
                         <div class="box-body">
 
-                            <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $product->id }}"/>
 
                                 <div class="row">
                                     <div class="col-md-4">
@@ -58,7 +59,7 @@
                                             <select name="category_id" class="form-control">
                                                 <option value="">Select Category</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" {{  $category->id === $product->category_id ? ' selected' : '' }}>{!! $category->name !!}</option> >{!! $category->name !!}</option>
+                                                    <option value="{{ $category->id }}" {{  $category->id === $product->category_id ? ' selected' : '' }}>{!! $category->name !!}</option>
                                                 @endforeach
                                             </select>
 
@@ -69,7 +70,11 @@
 
                                         <div class="form-group">
                                             <h5>Sub-Category <span class="text-danger">*</span></h5>
-                                            <select name="subcategory_id" class="form-control"></select>
+                                            <select name="subcategory_id" class="form-control">
+                                                @foreach ($subcategories as $sub)
+                                                    <option value="{{ $sub->id }}" {{  $sub->id === $product->subcategory_id ? ' selected' : '' }}>{!! $sub->name !!}</option>
+                                                @endforeach
+                                            </select>
 
                                             @error('subcategory_id')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -78,7 +83,11 @@
 
                                         <div class="form-group">
                                             <h5>Sub SubCategory<span class="text-danger">*</span></h5>
-                                            <select name="subsubcategory_id" class="form-control"></select>
+                                            <select name="subsubcategory_id" class="form-control">
+                                                @foreach ($subsubcategory as $sub)
+                                                    <option value="{{ $sub->id }}" {{  $sub->id === $product->subsubcategory_id ? ' selected' : '' }}>{!! $sub->name !!}</option>
+                                                @endforeach
+                                            </select>
 
                                             @error('subsubcategory_id')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -154,7 +163,7 @@
 
                                         <div class="form-group">
                                             <h5>Thumbnail<span class="text-danger">*</span></h5>
-                                            <input type="file" name="thumbanail" id="thumbanail" class="form-control thumbanail" onChange="loadFile(event)" />
+                                            <input type="file" name="thumbanail" value="{{ $product->thumbanail }}" id="thumbanail" class="form-control thumbanail" onChange="loadFile(event)" />
                                             @error('thumbanail')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -201,28 +210,28 @@
                                 <div class="row mt-10">
                                     <div class="col-md-6">
 										<fieldset>
-											<input type="checkbox" id="hot_deal" name="hot_deal" value=''>
+											<input type="checkbox" id="hot_deal" name="hot_deal" value='' {{ $product->hot_deal == 1 ? 'checked' : '' }}>
 											<label for="hot_deal">Hot Deal</label>
 										</fieldset>
 										<fieldset>
-											<input type="checkbox" id="featured" name="featured" value="">
+											<input type="checkbox" id="featured" name="featured" value="" {{ $product->featured == 1 ? 'checked' : '' }}>
 											<label for="featured">Featured</label>
 										</fieldset>
 
 									</div>
                                     <div class="col-md-6">
                                         <fieldset>
-											<input type="checkbox" id="special_deal" name="special_deal" value="">
+											<input type="checkbox" id="special_deal" name="special_deal" value="" {{ $product->special_deal == 1 ? 'checked' : '' }} />
 											<label for="special_deal">Special Deals</label>
 										</fieldset>
 										<fieldset>
-											<input type="checkbox" id="status" name="status" value="">
+											<input type="checkbox" id="status" name="status" value="" {{ $product->status == 1 ? 'checked' : '' }} />
 											<label for="status">Status</label>
 										</fieldset>
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mt-20 mb-30">Add New</button>
+                                <button type="submit" class="btn btn-primary mt-20 mb-30">Update Product</button>
                             </form>
 
                         </div>

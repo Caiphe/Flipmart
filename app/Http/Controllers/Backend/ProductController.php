@@ -74,6 +74,12 @@ class ProductController extends Controller
         );
     }
 
+    public function show(Product $product){
+        return view('admin.product.show', [
+            'product' => $product
+        ]);
+    }
+
     public function edit(Product $product){
         return view('admin.product.edit',
             [
@@ -85,8 +91,42 @@ class ProductController extends Controller
             ]);
     }
 
-    public function update(){
+    public function update(ProductRequest $request, Product $product){
+        $data = $request->validated();
 
+
+        // if($data['thumbanail']){
+        //     $file = $data['thumbanail'];
+        //     unlink($product->thumbanail);
+        //     $nameGenerated = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+        //     Image::make($file)->resize(400,400)->save('upload/products/thumbnail/'.$nameGenerated);
+        //     $Imageurl = 'upload/products/thumbnail/'.$nameGenerated;
+        //     $data['thumbanail'] = $Imageurl;
+
+        // }else{
+        //     //Store Product Multiple Image
+        //     if($request->file('multi_images')){
+        //         $images = $request->file('multi_images');
+        //         foreach ($images as $img){
+        //             $imgName = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+        //             Image::make($file)->resize(400,400)->save('upload/products/multi-image/'.$imgName);
+        //             $uploadPath = 'upload/products/multi-image/'.$imgName;
+
+        //             MultiImage::create([
+        //                 'product_id' => $product->id,
+        //                 'photo_name' => $uploadPath
+        //             ]);
+        //         }
+        //     }
+        // }
+
+        $product->update($data);
+
+        $notification = array(
+            'message' => "Product updated successfully",
+            'alert-type' => 'success'
+        );
+        return redirect('product/manage')->with($notification);
     }
 
     public function destroy(Product $product){
