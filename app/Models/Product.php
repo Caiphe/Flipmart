@@ -33,6 +33,7 @@ class Product extends Model
         'featured',
         'special_deal',
         'status',
+        'current_status'
     ];
 
     // protected $guarded = [];

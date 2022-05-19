@@ -80,14 +80,18 @@ Route::prefix('subsubcategory')->group(function(){
 
 // Product Routes
 Route::prefix('product')->group(function(){
-    Route::get('/add', [ProductController::class, 'index'])->name('add.product');
+    Route::get('/add', [ProductController::class, 'create'])->name('add.product');
     Route::post('/store', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/manage', [ProductController::class, 'manage'])->name('manage.product');
+    Route::get('/manage', [ProductController::class, 'index'])->name('manage.product');
     Route::get('/delete/{product}', [ProductController::class, 'destroy'])->name('product.delete');
     Route::get('/edit/{product:slug}', [ProductController::class, 'edit'])->name('product.edit');
     Route::get('/show/{product:slug}', [ProductController::class, 'show'])->name('product.show');
     Route::post('/update/{product}', [ProductController::class, 'update'])->name('product.update');
 });
+
+Route::post('/update/product-image/', [ProductController::class, 'updateProductImage'])->name('product.update.image');
+Route::put('/delete/product-image/{singleimage}', [ProductController::class, 'deleteProductImage'])->name('product.multimage.delete');
+
 
 // Non Admin Routes
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {

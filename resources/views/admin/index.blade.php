@@ -139,10 +139,13 @@
                                                 @endif
                                             </td>
                                             <td class="text-right">
-                                                <a href="#" class="waves-effect waves-light btn btn-info btn-circle mx-5">
+                                                <a href="{{ route('product.edit', $item->slug) }}" class="waves-effect waves-light btn btn-info btn-circle mx-5">
                                                     <i class="fa fa-pencil"></i>
-                                                   </a>
-                                                <a href="#" class="waves-effect waves-light btn btn-danger btn-circle mx-5">
+                                                </a>
+                                                <a href="{{ route('product.show', $item->slug) }}" class="waves-effect waves-light btn btn-success btn-circle mx-5">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a class="waves-effect waves-light btn btn-danger btn-circle mx-5" id="delete" href="{{ route('product.delete', $item->id) }}">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>

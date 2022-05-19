@@ -43,6 +43,7 @@ class ProductRequest extends FormRequest
           'featured' => ['nullable'],
           'special_deal' => ['nullable'],
           'status' => ['nullable'],
+          'current_status' => ['required'],
         ];
     }
 
@@ -67,6 +68,7 @@ class ProductRequest extends FormRequest
             'featured' => htmlspecialchars($this->featured, ENT_NOQUOTES),
             'special_deal' => htmlspecialchars($this->special_deal, ENT_NOQUOTES),
             'status' => htmlspecialchars($this->status, ENT_NOQUOTES),
+            'current_status' => htmlspecialchars($this->current_status, ENT_NOQUOTES),
         ]);
     }
 
